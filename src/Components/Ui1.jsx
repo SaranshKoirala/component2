@@ -14,7 +14,7 @@ export default function Ui1({
       className={`transition-all duration-1000 ${
         nonActiveDiv === index
           ? "flex flex-col justify-between items-center gap-8 bg-red-500  rounded-3xl py-4 px-8 w-[490px]"
-          : " bg-red-100 text-red-500 w-[240px] rounded-3xl flex flex-col justify-end py-4 gap-10 items-center"
+          : "relative bg-red-100 text-red-500 w-[240px] rounded-3xl flex flex-col justify-end py-4 gap-10 items-center group"
       }`}
       onClick={handleActiveDiv}
     >
@@ -53,7 +53,15 @@ export default function Ui1({
         </>
       ) : (
         <>
-          <div className="-rotate-90 transition-all duration-900 ease-in-out">
+          {nonActiveDiv === 0 ? (
+            <div className="absolute -top-16 right-14 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div>Click me!</div>
+              <img src="/curlyarrow.png" />
+            </div>
+          ) : (
+            ""
+          )}
+          <div className=" -rotate-90 transition-all duration-900 ease-in-out">
             <div
               className={`font-bold mb-3 text-2xl/7 ${
                 index === 0 ? "" : "w-28"
